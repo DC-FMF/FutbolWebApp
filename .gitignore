@@ -1,0 +1,10 @@
+Programs/*.exe
+Programs/*.dbg
+Programs/*.dso
+Data/*.cch
+AppSrc/*.dep
+AppSrc/*.prn
+AppHtml/Cache/
+AppHtml/*.log
+*.bak
+*.tmp
