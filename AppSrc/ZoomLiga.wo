@@ -7,6 +7,8 @@ Use cWebPanel.pkg
 Use cWebMenuGroup.pkg
 Use cWebMenuItem.pkg
 Use cWebForm.pkg
+Use SelectEquipo.wo
+Use cWebButton.pkg
 
 Use cligaDataDictionary.dd
 
@@ -25,7 +27,7 @@ Object oZoomLiga is a cWebView
     Set Main_DD To oliga_DD
     Set Server  To oliga_DD
 
-
+   
     Object oWebMainPanel is a cWebPanel
         Set piColumnCount to 12
         WebSetResponsive piColumnCount rmMobile to 4
@@ -61,6 +63,22 @@ Object oZoomLiga is a cWebView
             Set peLabelPosition to lpTop
             Set psLabel to "EquiposMax"
         End_Object 
+        
+         //Boton Ver Equipos de la liga
+        Object oVerEquiposBtn is a cWebButton
+            Set psCaption to "Ver Equipos de la Liga"
+            Set piColumnSpan to 12
+            Set piColumnIndex to 0
+            Set psCSSClass to "AppBtn"
+        
+             //Registro explicito del origien del objeto 
+            WebRegisterPath ntNavigateForward oSelectEquipo
+            Procedure OnClick
+                // Disparamos la navegación hacia adelante pasando el contexto del Data Dictionary activo
+                Send NavigateForward of oSelectEquipo Self
+            End_Procedure
+        End_Object
+        
     End_Object 
 
     Object oActionGroup is a cWebMenuGroup
