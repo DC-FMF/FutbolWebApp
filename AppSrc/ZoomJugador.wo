@@ -7,6 +7,8 @@ Use cWebPanel.pkg
 Use cWebMenuGroup.pkg
 Use cWebMenuItem.pkg
 Use cWebForm.pkg
+Use cWebButton.pkg
+Use SelectPosicion.wo
 
 Use cligaDataDictionary.dd
 Use cequipoDataDictionary.dd
@@ -64,7 +66,7 @@ Object oZoomJugador is a cWebView
             Set psLabel to "Nacionalidad"
         End_Object 
 
-        Object oequipoNombre is a cWebForm
+Object oequipoNombre is a cWebForm
             Entry_Item equipo.Nombre
             Set piColumnSpan to 12
             Set piColumnIndex to 0
@@ -78,9 +80,23 @@ Object oZoomJugador is a cWebView
             Procedure OnPrompt
                 Send NavigatePath
             End_Procedure
-        End_Object 
-    End_Object 
+        End_Object
 
+        // Botón para navegar desde ZoomJugador a SelectPosicion (Punto 4 - nfUndefined)
+        Object oVerPosicionesBtn is a cWebButton
+            Set psCaption to "Ver Posiciones"
+            Set piColumnSpan to 12
+            Set piColumnIndex to 0
+            Set psCSSClass to "AppBtn"
+
+            WebRegisterPath ntNavigateForward oSelectPosicion
+
+            Procedure OnClick
+                Send NavigateForward of oSelectPosicion Self
+            End_Procedure
+        End_Object
+    End_Object
+    
     Object oActionGroup is a cWebMenuGroup
 
         Object oSaveBtn is a cWebMenuItem
